@@ -1,0 +1,104 @@
+Conceptual Model for Data Warehouse Project
+
+Overview
+
+This data warehouse is designed to track sales performance across multiple dimensions including products, customers, channels, and time. The model follows a star schema design with fact and dimension tables.
+
+Core Entities
+Fact Table
+fact_sales
+
+Measures: amount (decimal), quantity (integer)
+
+Foreign keys to all dimension tables
+
+Dimension Tables
+dim_product
+
+Attributes: product ID, name, category
+
+Slowly Changing Dimension (Type 2) implementation for tracking changes
+
+dim_category
+
+Attributes: category ID, name
+
+Hierarchical relationship with products
+
+dim_channel
+
+Attributes: channel ID, name, region
+
+Represents sales channels (online, physical stores, wholesale)
+
+dim_date
+
+Attributes: day, month, year, full date
+
+Time dimension for temporal analysis
+
+dim_customers
+
+Attributes: customer ID, name, type, location (city/state/country)
+
+Contains individual and business customers
+
+Key Relationships
+Products belong to categories (many-to-one)
+
+Sales are associated with products, channels, dates, and customers (many-to-many relationships through fact table)
+
+Channels are categorized by region
+
+Business Processes Supported
+Sales Performance Analysis
+
+By product/category
+
+By channel/region
+
+By customer type
+
+Over time (daily, monthly, yearly)
+
+Inventory Analysis
+
+Product movement tracking
+
+Customer Behavior Analysis
+
+Purchase patterns
+
+Regional preferences
+
+Slowly Changing Dimensions (SCD) Implementation
+Type 1 (Overwrite)
+
+Implemented for dim_customers (simple updates)
+
+Type 2 (History Tracking)
+
+Implemented for dim_product with:
+
+begin_date
+
+end_date
+
+active flag
+
+Allows tracking of product changes over time
+
+Analytical Capabilities
+The model supports:
+
+Sales trend analysis
+
+Channel performance comparison
+
+Customer segmentation
+
+Product category performance
+
+Time-based reporting (YTD, QTD, MTD)
+
+

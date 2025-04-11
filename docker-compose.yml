@@ -6,7 +6,7 @@ services:
     container_name: dw_git
     environment:
       POSTGRES_DB: dw_db
-      POSTGRES_USER: dwadmin
-      POSTGRES_PASSWORD: dwadmin
+      POSTGRES_USER: ##
+      POSTGRES_PASSWORD: ##
     ports:
       - "5431:5432"
